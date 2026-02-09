@@ -18,4 +18,5 @@
 
   This webpage is deployed to Github Pages.
 
-  
+  https://dennyh-20.github.io/se_project_spots/
+
