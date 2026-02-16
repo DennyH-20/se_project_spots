@@ -13,6 +13,8 @@
   - Responsive Design
   - Figma
   - Github
+  - Noramlize.css
+  - Fonts.css
 
 ## Deployment 
 
