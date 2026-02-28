@@ -113,6 +113,11 @@ font-size: 16px;
 font-family: Poppins, Arial, sans-serif;
 font-weight: 500;
 cursor: pointer;
+border: none;
+}
+
+.modal__submit-btn:hover {
+  opacity: 0.8;
 }
 
 @media screen and (max-width: 627px) {
@@ -133,7 +138,7 @@ cursor: pointer;
 }
 
 .modal__close-btn {
-  top: 22px;
+  top: 12px;
   right: 12px;
 }
 }
