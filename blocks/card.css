@@ -12,6 +12,11 @@
   display: block;
   border-radius: 8px;
   margin-bottom: 12px;
+  cursor: pointer;
+}
+
+.card__image:hover {
+  opacity: 0.9;
 }
 
 .card__content {
@@ -34,16 +39,16 @@
 
 .card__delete-button:hover {
   background-image: url(../images/spots-images/delete-hover.svg);
-  cursor: pointer;
 }
 
 .card__like-button {
   background-image: url(../images/spots-images/Heart.svg);
+  background-repeat: no-repeat;
   width: 23px;
   height: 20px;
   border: none;
   background-color: transparent;
-  opacity: 40%;
+  opacity: 0.4;
   cursor: pointer;
 }
 

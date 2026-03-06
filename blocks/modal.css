@@ -100,7 +100,6 @@
   padding-right: 12px;
   padding-bottom: 16px;
   padding-left: 12px;
-  gap: 10px;
   opacity: 1;
   border-width: 1px;
   font-size: 20px;
@@ -163,4 +162,13 @@ border: none;
   top: 12px;
   right: 12px;
 }
+
+  .modal__close-btn_type_preview {
+    top: -30px;
+    right: 0;
+  }
+
+  .modal__caption {
+    font-size: 14px;
+  }
 }
