@@ -94,18 +94,48 @@ function getCardElement(data) {
   return cardElement;
 }
 
+function handleEscapeKey(evt) {
+  if (evt.key === "Escape") {
+    const openedModal = document.querySelector(".modal_is-opened");
+    if (openedModal) closeModal(openedModal);
+  }
+}
+
+const resetValidation = (formEl, config) => {
+  const inputList = Array.from(formEl.querySelectorAll(config.inputSelector));
+
+  inputList.forEach((input) => {
+    input.classList.remove(config.inputErrorClass);
+
+    const errorElement = formEl.querySelector(`#${input.id}-error`);
+    if (errorElement) {
+      errorElement.textContent = "";
+      errorElement.classList.remove(config.errorClass);
+    }
+  });
+
+  const submitButton = formEl.querySelector(config.submitButtonSelector);
+  if (submitButton) {
+    submitButton.disabled = false;
+    submitButton.classList.remove(config.inactiveButtonClass);
+  }
+};
+
 function openModal(modal) {
   modal.classList.add("modal_is-opened");
+  document.addEventListener("keydown", handleEscapeKey);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_is-opened");
+  document.removeEventListener("keydown", handleEscapeKey);
 }
 
 editProfileBtn.addEventListener("click", function () {
   editProfileNameInput.value = profileNameEl.textContent;
   editProfileDescriptionInput.value = profileDescriptionEl.textContent;
   openModal(editProfileModal);
+  resetValidation(editProfileModal, settings);
 });
 
 editProfileForm.addEventListener("submit", handleEditProfileSubmit);
