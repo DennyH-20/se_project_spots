@@ -24,4 +24,5 @@
 
 ## Project Pitch Video
 
-https://drive.google.com/file/d/18Wl51M3BCIQv8DB2cRS2JbhgKPJr1G_0/view?usp=sharing, where I describe my project and some challenges I faced while building it.
+https://www.loom.com/share/99c42d9429b6490dbc2c8d31ae339766 
+where I describe my project and some challenges I faced while building it.
