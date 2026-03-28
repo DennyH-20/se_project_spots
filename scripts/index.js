@@ -109,6 +109,12 @@ function handleEscapeKey(evt) {
   }
 }
 
+function handleModalOverlayClick(evt) {
+  if (evt.target === evt.currentTarget) {
+    closeModal(evt.currentTarget);
+  }
+}
+
 const resetValidation = (formEl, config) => {
   const inputList = Array.from(formEl.querySelectorAll(config.inputSelector));
 
@@ -132,11 +138,14 @@ const resetValidation = (formEl, config) => {
 function openModal(modal) {
   modal.classList.add("modal_is-opened");
   document.addEventListener("keydown", handleEscapeKey);
+  modal.addEventListener("click", handleModalOverlayClick);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_is-opened");
   document.removeEventListener("keydown", handleEscapeKey);
+  modal.removeEventListener("click", handleModalOverlayClick);
+
 }
 
 editProfileBtn.addEventListener("click", function () {
