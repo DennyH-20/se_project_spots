@@ -30,14 +30,6 @@ const initialCards = [
   },
 ];
 
-const settings = {
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__submit-btn",
-  inactiveButtonClass: "modal__submit-btn_inactive",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error_visible",
-};
-
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
