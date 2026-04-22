@@ -1,3 +1,7 @@
+import "./index.css";
+import { enableValidation, settings } from "../scripts/validation.js";
+import Api from "../utils/Api.js";
+
 const initialCards = [
   {
     name: "Golden Gate Bridge",
@@ -30,6 +34,33 @@ const initialCards = [
   },
 ];
 
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "e3e19d25-f063-45b2-b8f4-a667c1580945",
+    "Content-Type": "application/json",
+  },
+});
+
+//api
+//.getInitialCards()
+//.then((cards) => {})
+//.catch((err) => {
+/// console.error(err);
+//});
+
+api
+  .getAppInfo()
+  .then(([cards]) => {
+    cards.forEach(function (item) {
+      const cardElement = getCardElement(item);
+      cardsList.append(cardElement);
+    });
+  })
+  .catch((err) => {
+    console.error(err);
+  });
+
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
@@ -56,7 +87,7 @@ const previewModal = document.querySelector("#preview-modal");
 const previewModalCloseBtn = previewModal.querySelector(".modal__close-btn");
 const previewImageEl = previewModal.querySelector(".modal__image");
 const previewCaption = previewModal.querySelector(".modal__caption");
-const closeButtons = document.querySelectorAll('.modal__close-btn');
+const closeButtons = document.querySelectorAll(".modal__close-btn");
 
 const cardTemplate = document
   .querySelector("#card-template")
@@ -116,7 +147,6 @@ function closeModal(modal) {
   modal.classList.remove("modal_is-opened");
   document.removeEventListener("keydown", handleEscapeKey);
   modal.removeEventListener("click", handleModalOverlayClick);
-
 }
 
 editProfileBtn.addEventListener("click", function () {
@@ -129,10 +159,9 @@ editProfileBtn.addEventListener("click", function () {
 editProfileForm.addEventListener("submit", handleEditProfileSubmit);
 
 closeButtons.forEach((button) => {
+  const popup = button.closest(".modal");
 
-  const popup = button.closest('.modal');
-
-  button.addEventListener('click', () => closeModal(popup));
+  button.addEventListener("click", () => closeModal(popup));
 });
 
 newPostBtn.addEventListener("click", function () {
@@ -141,9 +170,17 @@ newPostBtn.addEventListener("click", function () {
 
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
-  profileNameEl.textContent = editProfileNameInput.value;
-  profileDescriptionEl.textContent = editProfileDescriptionInput.value;
-  closeModal(editProfileModal);
+  api
+    .editUserInfo({
+      name: editProfileNameInput.value,
+      about: editProfileDescriptionInput.value,
+    })
+    .then((data) => {
+      profileNameEl.textContent = editProfileNameInput.value;
+      profileDescriptionEl.textContent = editProfileDescriptionInput.value;
+      closeModal(editProfileModal);
+    })
+    .catch(console.error);
 }
 
 function handleAddCardSubmit(evt) {
@@ -165,7 +202,9 @@ function handleAddCardSubmit(evt) {
 
 addCardFormElement.addEventListener("submit", handleAddCardSubmit);
 
-initialCards.forEach(function (item) {
-  const cardElement = getCardElement(item);
-  cardsList.append(cardElement);
-});
+//initialCards.forEach(function (item) {
+//const cardElement = getCardElement(item);
+//cardsList.append(cardElement);
+//});
+
+enableValidation(settings);
